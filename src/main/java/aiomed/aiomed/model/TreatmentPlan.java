@@ -1,9 +1,18 @@
 package aiomed.aiomed.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@EqualsAndHashCode(of="id")
+@ToString
 public class TreatmentPlan {
+    @Id
     private Long id;
     private String patientId;
     private TreatmentAction action;
@@ -47,18 +56,7 @@ public class TreatmentPlan {
         return recurrencePattern;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TreatmentPlan that = (TreatmentPlan) o;
-        return Objects.equals(id, that.id) && action == that.action && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(recurrencePattern, that.recurrencePattern);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, action, startTime, endTime, recurrencePattern);
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -84,15 +82,5 @@ public class TreatmentPlan {
         this.recurrencePattern = recurrencePattern;
     }
 
-    @Override
-    public String toString() {
-        return "TreatmentPlan{" +
-                "id=" + id +
-                ", patientId='" + patientId + '\'' +
-                ", action=" + action +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", recurrencePattern='" + recurrencePattern + '\'' +
-                '}';
-    }
+
 }

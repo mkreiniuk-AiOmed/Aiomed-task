@@ -1,21 +1,41 @@
 package aiomed.aiomed.model;
 
+import aiomed.aiomed.repo.TreatmentPlanRepo;
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@EqualsAndHashCode(of = "id")
+@ToString
 public class TreatmentTask {
+    @Id
     private Long id;
     private TreatmentAction action;
     private String patientId;
     private LocalDateTime startTime;
     private TaskStatus status;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TreatmentPlan plan;
 
-    public TreatmentTask(Long id, TreatmentAction action, String patientId, LocalDateTime startTime, TaskStatus status) {
-        this.id = id;
+    public TreatmentTask(Long id, TreatmentAction action, String patientId, TreatmentPlan plan, LocalDateTime startTime, TaskStatus status) {
+        this.id = id; //Task id
         this.action = action;
         this.patientId = patientId;
+        this.plan = plan;
         this.startTime = startTime;
         this.status = status;
+    }
+
+    public TreatmentPlan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(TreatmentPlan plan) {
+        this.plan = plan;
     }
 
     public TreatmentTask() {
@@ -61,18 +81,7 @@ public class TreatmentTask {
         this.status = status;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TreatmentTask that = (TreatmentTask) o;
-        return Objects.equals(id, that.id) && action == that.action && Objects.equals(startTime, that.startTime) && Objects.equals(status, that.status);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, action, startTime, status);
-    }
 
     public enum TaskStatus {
         ACTIVE,
