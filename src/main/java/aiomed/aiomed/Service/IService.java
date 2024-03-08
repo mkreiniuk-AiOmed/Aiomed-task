@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public interface IService {
 
-boolean  createTreatmentTask (Long id, TreatmentAction action, String patientId, LocalDateTime startTime, TreatmentTask.TaskStatus status);
+boolean  createTreatmentTask (Long id, TreatmentAction action, String patientId,TreatmentPlan plan, LocalDateTime startTime, TreatmentTask.TaskStatus status);
 TreatmentPlan getPlan(Long id);
 TreatmentTask getTask (Long id);
 

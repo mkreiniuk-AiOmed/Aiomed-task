@@ -26,8 +26,9 @@ public class AiOmed_Service implements IService{
 
     @Override
     @Transactional
-    public boolean createTreatmentTask(Long id, TreatmentAction action, String patientId, LocalDateTime startTime, TreatmentTask.TaskStatus status) {
-        return false;
+    public boolean createTreatmentTask(Long id, TreatmentAction action, String patientId,TreatmentPlan plan, LocalDateTime startTime, TreatmentTask.TaskStatus status) {
+        TreatmentTask newTask = new TreatmentTask(id,action, patientId,plan, startTime, status);
+        return  taskRepo.save(newTask) != null;
     }
 
     @Override
