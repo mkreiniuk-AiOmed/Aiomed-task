@@ -2,17 +2,22 @@ package aiomed.aiomed.model;
 
 import aiomed.aiomed.repo.TreatmentPlanRepo;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
+
 
 @Entity
 @EqualsAndHashCode(of = "id")
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class TreatmentTask {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private TreatmentAction action;
     private String patientId;
@@ -21,14 +26,7 @@ public class TreatmentTask {
     @ManyToOne(fetch = FetchType.EAGER)
     private TreatmentPlan plan;
 
-    public TreatmentTask(Long id, TreatmentAction action, String patientId, TreatmentPlan plan, LocalDateTime startTime, TaskStatus status) {
-        this.id = id; //Task id
-        this.action = action;
-        this.patientId = patientId;
-        this.plan = plan;
-        this.startTime = startTime;
-        this.status = status;
-    }
+
 
     public TreatmentPlan getPlan() {
         return plan;
@@ -38,8 +36,7 @@ public class TreatmentTask {
         this.plan = plan;
     }
 
-    public TreatmentTask() {
-    }
+
 
     public Long getId() {
         return id;

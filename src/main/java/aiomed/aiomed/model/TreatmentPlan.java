@@ -1,12 +1,14 @@
 package aiomed.aiomed.model;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.ToString;
 
+
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @EqualsAndHashCode(of="id")
@@ -18,15 +20,17 @@ public class TreatmentPlan {
     private TreatmentAction action;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String recurrencePattern;
 
-    public TreatmentPlan(Long id, String patientId, TreatmentAction action, LocalDateTime startTime, LocalDateTime endTime, String recurrencePattern) {
+    @Embedded
+    private RecurrencePattern pattern;
+
+    public TreatmentPlan(Long id, String patientId, TreatmentAction action, LocalDateTime startTime, LocalDateTime endTime,RecurrencePattern  pattern) {
         this.id = id;
         this.patientId = patientId;
         this.action = action;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.recurrencePattern = recurrencePattern;
+        this.pattern =  pattern;
     }
 
     public TreatmentPlan() {
@@ -52,9 +56,6 @@ public class TreatmentPlan {
         return endTime;
     }
 
-    public String getRecurrencePattern() {
-        return recurrencePattern;
-    }
 
 
 
@@ -77,10 +78,15 @@ public class TreatmentPlan {
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
-
-    public void setRecurrencePattern(String recurrencePattern) {
-        this.recurrencePattern = recurrencePattern;
+    public RecurrencePattern getPattern() {
+        return pattern;
     }
+
+    public void setPattern(RecurrencePattern pattern) {
+        this.pattern = pattern;
+    }
+
+
 
 
 }

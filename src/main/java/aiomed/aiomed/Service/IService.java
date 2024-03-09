@@ -1,15 +1,24 @@
 package aiomed.aiomed.Service;
 
+import aiomed.aiomed.model.RecurrencePattern;
 import aiomed.aiomed.model.TreatmentAction;
 import aiomed.aiomed.model.TreatmentPlan;
 import aiomed.aiomed.model.TreatmentTask;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface IService {
 
-boolean  createTreatmentTask (Long id, TreatmentAction action, String patientId,TreatmentPlan plan, LocalDateTime startTime, TreatmentTask.TaskStatus status);
+boolean  createTreatmentTask (TreatmentPlan plan);
 TreatmentPlan getPlan(Long id);
 TreatmentTask getTask (Long id);
+
+TreatmentTask completeTask (Long id);
+
+boolean shouldCreateTreatmentTask(TreatmentPlan plan);
+List<TreatmentPlan> getAllPlans();
+void checker();
+
 
 }
