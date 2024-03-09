@@ -1,7 +1,6 @@
 package aiomed.aiomed.Service;
 
 import aiomed.aiomed.model.RecurrencePattern;
-import aiomed.aiomed.model.TreatmentAction;
 import aiomed.aiomed.model.TreatmentPlan;
 import aiomed.aiomed.model.TreatmentTask;
 import aiomed.aiomed.repo.TreatmentPlanRepo;
@@ -12,9 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
