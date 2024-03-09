@@ -4,9 +4,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
-import lombok.NonNull;
 import lombok.ToString;
-
 
 import java.time.LocalDateTime;
 

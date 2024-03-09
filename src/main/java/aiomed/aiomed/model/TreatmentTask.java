@@ -1,6 +1,6 @@
 package aiomed.aiomed.model;
 
-import aiomed.aiomed.repo.TreatmentPlanRepo;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
